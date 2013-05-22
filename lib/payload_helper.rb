@@ -94,7 +94,14 @@ def log_request(request)
 end
 
 def log_response(response)
+  @log.info("::HTTP RESPONSE CODE:: #{response.code}")
   @log.debug("::RESPONSE BODY:: #{response.body}")
   puts "::HTTP RESPONSE CODE:: #{response.code}"
-  puts "::RESPONSE BODY:: #{response.body}"
+  begin
+   puts "::RESPONSE BODY:: #{JSON.parse(response.body).to_yaml}" if @header.to_s.include?("json")
+  rescue
+    puts "::RESPONSE BODY:: #{response.body}"
+  end
+
+  puts "::RESPONSE BODY:: #{response.body}" if !@header.to_s.include?("json")
 end

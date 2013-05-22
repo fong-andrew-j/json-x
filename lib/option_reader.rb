@@ -16,14 +16,7 @@ def fetch_yaml_values()
   @certificate = yml_section.fetch("certificate", ifnone = nil)
   @file = yml_section.fetch("file", ifnone = nil)
 
-  #@uri = URI.parse(@endpoints_yaml.fetch(environment).fetch(application).fetch(endpoint).fetch("uri", ifnone = ""))
-  #@method = @endpoints_yaml.fetch(environment).fetch(application).fetch(endpoint).fetch("method", ifnone = nil)
-  #@header = eval(@endpoints_yaml.fetch(environment).fetch(application).fetch(endpoint).fetch("header", ifnone = nil))
-  #@username = @endpoints_yaml.fetch(environment).fetch(application).fetch(endpoint).fetch("username", ifnone = nil)
-  #@password = @endpoints_yaml.fetch(environment).fetch(application).fetch(endpoint).fetch("password", ifnone = nil)
-  #@certificate = @endpoints_yaml.fetch(environment).fetch(application).fetch(endpoint).fetch("certificate", ifnone = nil)
-  #@file = @endpoints_yaml.fetch(environment).fetch(application).fetch(endpoint).fetch("file", ifnone = nil)
-
+  @log.debug("===== YAML FILE VALUES =====")
   @log.debug("uri: #{@uri}")
   @log.debug("method: #{@method}")
   @log.debug("header: #{@header}")
@@ -43,6 +36,7 @@ def fetch_option_values(options)
   @file = options[:file] if options[:file]
   @uri += options[:suffix] if options[:suffix]
 
+  @log.debug("===== OPTIONS READ =====")
   @log.debug("uri: #{@uri}")
   @log.debug("method: #{@method}")
   @log.debug("header: #{@header}")
